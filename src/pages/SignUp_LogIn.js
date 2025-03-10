@@ -40,7 +40,11 @@ const SignUpLogInForm = () => {
         }`}
       >
         {/* Login Form */}
-        <div className="absolute right-0 w-1/2 h-full bg-white flex items-center justify-center text-center p-10 transition-all duration-700 ease-in-out delay-300 z-10">
+        <div
+  className={`absolute w-1/2 h-full bg-white flex items-center justify-center text-center p-10 transition-all duration-700 ease-in-out delay-300 ${
+    isActive ? "left-0" : "right-0"
+  }`}
+>
           <form className="w-full" onSubmit={handleLogin}>
             <h1 className="text-4xl font-bold mb-2">Login</h1>
             <div className="relative my-6">
@@ -105,7 +109,11 @@ const SignUpLogInForm = () => {
         </div>
 
         {/* Registration Form */}
-        <div className="absolute right-0 w-1/2 h-full bg-white flex items-center justify-center text-center p-10 transition-all duration-700 ease-in-out delay-300 z-0">
+        <div
+  className={`absolute w-1/2 h-full bg-white flex items-center justify-center text-center p-10 transition-all duration-700 ease-in-out delay-300 ${
+    isActive ? "right-0" : "left-0"
+  }`}
+>
           <form className="w-full" onSubmit={handleRegister}>
             <h1 className="text-4xl font-bold mb-2">Registration</h1>
             <div className="relative my-6">
@@ -174,29 +182,36 @@ const SignUpLogInForm = () => {
         </div>
 
         {/* Toggle Panels */}
-        <div className="absolute w-full h-full">
-          <div className="absolute w-[300%] h-full bg-blue-500 rounded-full left-[-250%] transition-all duration-1000 ease-in-out z-0"></div>
-          <div className="absolute w-1/2 h-full flex flex-col justify-center items-center text-white z-10 transition-all duration-700 ease-in-out delay-300">
-            <h1 className="text-4xl font-bold">Hello, Welcome!</h1>
-            <p className="my-4">Don't have an account?</p>
-            <button
-              onClick={toggleForm}
-              className="px-6 py-3 bg-transparent border-2 border-white rounded-lg text-white font-semibold hover:bg-white hover:text-blue-500 transition-colors"
-            >
-              Register
-            </button>
-          </div>
-          <div className="absolute w-1/2 h-full flex flex-col justify-center items-center text-white z-10 transition-all duration-700 ease-in-out delay-300 right-[-50%]">
-            <h1 className="text-4xl font-bold">Welcome Back!</h1>
-            <p className="my-4">Already have an account?</p>
-            <button
-              onClick={toggleForm}
-              className="px-6 py-3 bg-transparent border-2 border-white rounded-lg text-white font-semibold hover:bg-white hover:text-blue-500 transition-colors"
-            >
-              Login
-            </button>
-          </div>
-        </div>
+<div className="absolute w-full h-full">
+  <div className="absolute w-[300%] h-full bg-blue-500 rounded-full left-[-250%] transition-all duration-1000 ease-in-out z-0"></div>
+
+  {/* Nếu đang ở form đăng nhập, hiển thị đăng ký */}
+  {!isActive ? (
+    <div className="absolute w-1/2 h-full flex flex-col justify-center items-center text-white z-10 transition-all duration-700 ease-in-out delay-300">
+      <h1 className="text-4xl font-bold">Hello, Welcome!</h1>
+      <p className="my-4">Don't have an account?</p>
+      <button
+        onClick={toggleForm}
+        className="px-6 py-3 bg-transparent border-2 border-white rounded-lg text-white font-semibold hover:bg-white hover:text-blue-500 transition-colors"
+      >
+        Register
+      </button>
+    </div>
+  ) : (
+    /* Nếu đang ở form đăng ký, hiển thị đăng nhập */
+    <div className="absolute w-1/2 h-full flex flex-col justify-center items-center text-white z-10 transition-all duration-700 ease-in-out delay-300">
+      <h1 className="text-4xl font-bold">Welcome Back!</h1>
+      <p className="my-4">Already have an account?</p>
+      <button
+        onClick={toggleForm}
+        className="px-6 py-3 bg-transparent border-2 border-white rounded-lg text-white font-semibold hover:bg-white hover:text-blue-500 transition-colors"
+      >
+        Login
+      </button>
+    </div>
+  )}
+</div>
+
       </div>
     </div>
   );
